@@ -1,0 +1,29 @@
+# macOS / editor junk
+.DS_Store
+*.swp
+
+# Binary doc exports (keep the .md source)
+*.docx
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Large data & build artifacts (regenerable; don't track)
+datasets/
+dist/
+archive/
+*.zip
+
+# Training outputs / caches
+runs/
+*.cache
+
+# Models: ignore the large/intermediate weights, but ship the production model.
+# (models/pretrained/ holds standard YOLO base weights — re-downloadable.)
+models/*.pt
+models/pretrained/
+!models/harmful_v3.pt

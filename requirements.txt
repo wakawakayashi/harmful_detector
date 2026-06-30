@@ -1,0 +1,8 @@
+# harmful_detector — key dependencies (conda env 'harmful', Python 3.12)
+# Reproduce: conda create -n harmful python=3.12 && pip install -r requirements.txt
+ultralytics==8.4.75
+torch==2.12.1
+gradio==6.19.0
+yt-dlp==2026.06.09
+opencv-python==4.13.0
+numpy==2.5.0

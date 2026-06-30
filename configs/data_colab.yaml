@@ -1,0 +1,8 @@
+# Colab paths — unzip the dataset zip with:  !unzip harmful_v2_dataset.zip -d /content/dataset
+path: /content/dataset
+train:
+  - haris-weapon-detection-dataset-curated/train/images
+  - gun2_yolo/images
+val: haris-weapon-detection-dataset-curated/val/images
+nc: 2
+names: [gun, knife]

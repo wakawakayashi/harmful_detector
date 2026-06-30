@@ -1,0 +1,8 @@
+# Relative to the repo root. datasets/ is gitignored — supply your own data here.
+path: datasets
+train:
+  - haris-weapon-detection-dataset-curated/train/images
+  - gun2_yolo/images
+val: haris-weapon-detection-dataset-curated/val/images
+nc: 2
+names: [gun, knife]
