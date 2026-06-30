@@ -147,6 +147,7 @@ def main():
         boxes += len(lines)
 
     # data.yaml — curated used in place, gun2 survivors appended to train
+    YAML_OUT.parent.mkdir(exist_ok=True)
     YAML_OUT.write_text(
         f"path: {DATA}\n"
         "train:\n"

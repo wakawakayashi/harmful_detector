@@ -20,11 +20,9 @@ conda activate harmful          # or prefix each command with: conda run -n harm
 python app.py                   # -> http://127.0.0.1:7860
 
 # CLI inference
-python src/predict.py path/to/video.mp4 --conf 0.3           # image / video / folder (supply your own)
-python src/predict.py 0                                       # webcam (live window)
-python src/track.py  <video>                                 # ByteTrack object IDs
-python src/webcam.py                                          # low-latency webcam loop
-python src/batch_videos.py                                    # batch a folder of videos
+python src/predict.py path/to/media --conf 0.3   # detect on an image / video / folder
+python src/track.py  path/to/video.mp4           # detect + ByteTrack object IDs
+python src/webcam.py                             # live webcam (boxes + FPS)
 ```
 
 Classes: `0=gun`, `1=knife`, `2=bat`. Inference runs locally on Mac (MPS) — no Colab needed;
@@ -37,8 +35,7 @@ CLI scripts and their options.
 |----------------|----------|
 | `app.py`       | Gradio web UI (entry point); per-class confidence thresholds + H.264 output |
 | `models/`      | `harmful_v3.pt` (production, 3-class) — shipped; other weights are gitignored |
-| `src/`         | inference (`predict`, `track`, `webcam`, `batch_videos`) + dataset builders |
-| `configs/`     | dataset YAMLs — `dataset_v*.yaml` (local), `data_colab*.yaml` (Colab) |
+| `src/`         | inference (`predict`, `track`, `webcam`) + dataset builders |
 | `docs/`        | `cli_tools.md` (CLI reference) + `how_it_works.md` (pipeline internals) |
 
 ## Known gaps
@@ -72,9 +69,9 @@ Sources, merged with average-hash de-duplication to prevent train/val leakage:
 ## Training
 
 Done on Google Colab GPU (local MPS is too slow): **YOLO11s**, 640 px, 120 epochs, batch ≈ 33,
-`cache=ram`, on an A100. Build the dataset with `src/build_dataset_v3.py`, package it for Colab
-upload, then train with the config in `configs/data_colab_v3.yaml`. The data sources and
-class-mapping table are documented in the `src/build_dataset*.py` docstrings.
+`cache=ram`, on an A100. `src/build_dataset_v3.py` assembles the dataset and generates the YOLO
+data YAML (local + Colab variants); package the dataset, upload to Colab, and train. The data
+sources and class-mapping table are documented in the `src/build_dataset*.py` docstrings.
 
 ## License
 

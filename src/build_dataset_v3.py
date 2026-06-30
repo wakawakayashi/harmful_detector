@@ -178,6 +178,7 @@ def main():
             if i % 1000 == 0:
                 print(f"  {i}/{len(label_entries)}  kept={sum(kept.values())} dup={dropped_dup}")
 
+    YAML_LOCAL.parent.mkdir(exist_ok=True)
     for yaml_path, base in ((YAML_LOCAL, str(DATA)), (YAML_COLAB, "/content/dataset")):
         yaml_path.write_text(
             f"# v3: 3 classes (gun, knife, bat). curated+gun2 in place, Zenodo remapped+merged.\n"
